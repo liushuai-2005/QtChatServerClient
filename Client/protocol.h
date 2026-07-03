@@ -1,0 +1,76 @@
+#ifndef PROTOCOL_H
+#define PROTOCOL_H
+typedef unsigned int uint;
+enum ENUM_TYPE //枚举
+{
+    ENUM_TYPE_MIN = 0,
+    //注册
+    ENUM_TYPE_REGIST_REQ,
+    ENUM_TYPE_REGIST_RES,
+    //登录
+    ENUM_TYPE_LOGIN_REQ,
+    ENUM_TYPE_LOGIN_RES,
+    //查找
+    ENUM_TYPE_FIND_USER_REQ,
+    ENUM_TYPE_FIND_USER_RES,
+    //在线
+    ENUM_TYPE_ONLINE_USER_REQ,
+    ENUM_TYPE_ONLINE_USER_RES,
+    //
+    ENUM_TYPE_ADJUDGE_ADD_FRIEND_REQ,
+    ENUM_TYPE_ADJUDGE_ADD_FRIEND_RES,
+    //同意添加
+    ENUM_TYPE_AGREE_ADD_FRIEND_REQ,
+    ENUM_TYPE_AGREE_ADD_FRIEND_RES,
+    //刷新好友
+    ENUM_TYPE_UPDATE_FRIEND_REQ,
+    ENUM_TYPE_UPDATE_FRIEND_RES,
+
+    ENUM_TYPE_DELETE_FRIEND_REQ,
+    ENUM_TYPE_DELETE_FRIEND_RES,
+
+    ENUM_TYPE_CHAT_REQ,
+    ENUM_TYPE_CHAT_RES,
+
+    ENUM_TYPE_MKDIR_REQ,
+    ENUM_TYPE_MKDIR_RES,
+
+    ENUM_TYPE_FLUSH_FILE_REQ,
+    ENUM_TYPE_FLUSH_FILE_RES,
+
+    ENUM_TYPE_DELETE_FILE_REQ,
+    ENUM_TYPE_DELETE_FILE_RES,
+
+    ENUM_TYPE_RENAME_FILE_REQ,
+    ENUM_TYPE_RENAME_FILE_RES,
+
+    ENUM_TYPE_UPLOAD_FILE_INIT_REQ,
+    ENUM_TYPE_UPLOAD_FILE_INIT_RES,
+
+    ENUM_TYPE_UPLOAD_FILE_DATA_REQ,
+    ENUM_TYPE_UPLOAD_FILE_DATA_RES,
+
+    ENUM_TYPE_DOWNLOAD_FILE_REQ,
+    ENUM_TYPE_DOWNLOAD_FILE_RES,
+
+    ENUM_TYPE_DOWNLOAD_FILE_DATA_REQ,
+    ENUM_TYPE_DOWNLOAD_FILE_DATA_RES,
+};
+
+struct PDU
+{
+    uint uiTotalLen;  //总长度
+    uint uiMsgLen;    //柔性数组的长度
+    uint uiType;      //消息类型
+    char caData[64];  //
+    char caMsg[];     //柔性数组 长度不固定，想多长多长
+};
+
+struct FileInfo{
+    char caName[32];
+    int iFileType;
+};
+
+
+PDU* initPDU(uint uiMsgLen);
+#endif // PROTOCOL_H

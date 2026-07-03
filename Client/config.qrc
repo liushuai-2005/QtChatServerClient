@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>client.config</file>
+    </qresource>
+    <qresource prefix="/new/prefix2"/>
+    <qresource prefix="/"/>
+</RCC>
